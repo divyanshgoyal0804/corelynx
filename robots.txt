@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.corelynxtech.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10
+
+# Disallow specific paths
+Disallow: /admin/
+Disallow: /login/
+Disallow: /api/
+Disallow: /tmp/
+Disallow: /cache/
+
+# Allow specific paths
+Allow: /about
+Allow: /services
+Allow: /portfolio
+Allow: /contact
+Allow: /internship.html

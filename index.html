@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Corelynx Technologies - Empowering Innovation, Delivering Excellence in Software Solutions for Startups and Enterprises">
+    <title>Corelynx Technologies - Software Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Variables */
+        :root {
+            --primary-color: #0a66c2;
+            --secondary-color: #f6fff6;
+            --text-color: #223344;
+            --transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f6fff6 0%, #ffffff 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(10,102,194,0.1)" fill-opacity="1" d="M0,64L48,85.3C96,107,192,149,288,165.3C384,181,480,171,576,144C672,117,768,75,864,74.7C960,75,1056,117,1152,138.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat center bottom;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .stat-item.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-color), #004b9a);
+            color: white;
+            border: none;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(10, 102, 194, 0.3);
+        }
+
+        /* About Section */
+        #about {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f6fff6 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), #004b9a);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-icon::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .timeline-content {
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            perspective: 1000px;
+            width: 100%;
+            height: 100%;
+        }
+
+        .flip-card {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 102, 194, 0.9);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 0;
+            }
+
+            .timeline::before {
+                display: none;
+            }
+
+            .timeline-item {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+          <div class="logo">Corelynx Technologies</div>
+      
+          <!-- 🟢 ADD THIS: Toggle Button for Mobile -->
+          <button class="navbar-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">
+            ☰
+          </button>
+      
+          <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="internship.html">Internship</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      
+
+    <section id="home" class="hero">
+                    <br><br><br><br>
+
+        <div class="container">
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="fade-in">Empowering Innovation, Delivering Excellence</h1>
+                    <p class="fade-in" style="--delay: 0.2s">Transforming ideas into scalable solutions for startups and enterprises</p>
+                    <div class="stats fade-in" style="--delay: 0.4s">
+                        <div class="stat-item">
+                            <span class="number">50+</span>
+                            <span class="label">Projects Delivered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">95%</span>
+                            <span class="label">Client Satisfaction</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">2+</span>
+                            <span class="label">Years of Excellence</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons fade-in" style="--delay: 0.6s">
+                        <a href="#contact" class="cta-button primary">Get Started</a>
+                        <a href="#services" class="cta-button secondary">View Services</a>
+                    </div>
+                </div>
+                <div class="hero-image fade-in" style="--delay: 0.8s">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80" alt="Modern Software Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p class="lead">At Corelynx Technologies, we're more than just a software company - we're your digital transformation partner.</p>
+                        <p>Founded in 2023, we've quickly established ourselves as a leader in innovative technology solutions for startups and enterprises alike.</p>
+                        <p>Our mission is simple: to empower businesses through cutting-edge technology while maintaining the highest standards of quality and reliability. We believe that technology should be a catalyst for growth, not a barrier to entry.</p>
+                        <p>With a team of experienced professionals specializing in everything from mobile development to artificial intelligence, we bring a unique blend of creativity and technical expertise to every project. Our approach is client-centric, focusing on delivering solutions that not only solve immediate challenges but also position our clients for long-term success.</p>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>2023</h3>
+                                <p>Company founded with a vision to disrupt the software development industry</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Q1 2024</h3>
+                                <p>Launched first AI-powered mobile application for a healthcare client</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>Q3 2024</h3>
+                                <p>Expanded services to include enterprise-level SaaS solutions</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h3>2025</h3>
+                                <p>Reached 50+ successful project deliveries and 95% client satisfaction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile apps for iOS and Android</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Scalable cloud infrastructure and deployment services</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI & ML</h3>
+                    <p>Artificial intelligence and machine learning solutions</p>
+                        <li>User research and personas</li>
+                        <li>Wireframing and prototyping</li>
+                        <li>Interactive design</li>
+                        <li>User testing</li>
+                        <li>Design system development</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>DevOps & Cloud</h3>
+                    <p>Implementing modern DevOps practices and cloud solutions to ensure efficient and reliable software delivery.</p>
+                    <ul class="service-features">
+                        <li>CI/CD pipeline setup</li>
+                        <li>Containerization with Docker</li>
+                        <li>Cloud infrastructure</li>
+                        <li>Automated testing</li>
+                        <li>Monitoring and logging</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <style>
+          .portfolio {
+            padding: 60px 0;
+            background: #eaf7f6;
+            font-family: Arial, sans-serif;
+          }
+      
+          .portfolio h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #0a1f44;
+          }
+      
+          .portfolio-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+          }
+      
+          .portfolio-item {
+            position: relative;
+            width: 350px;
+            height: 430px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+      
+          .portfolio-item:hover {
+            transform: translateY(-5px);
+          }
+      
+          .portfolio-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+          }
+      
+          .portfolio-content {
+            padding: 20px;
+            flex-grow: 1;
+          }
+      
+          .portfolio-content h3 {
+            margin: 0 0 10px;
+            color: #0a1f44;
+          }
+      
+          .portfolio-content p {
+            margin: 0;
+            color: #444;
+          }
+      
+          .hover-details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+          }
+      
+          .portfolio-item:hover .hover-details {
+            transform: translateY(0%);
+          }
+        </style>
+      
+        <div class="container">
+          <h2>Our Work</h2>
+          <div class="portfolio-grid">
+      
+            <div class="portfolio-item">
+              <div class="portfolio-image">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" alt="E-commerce Platform">
+              </div>
+              <div class="portfolio-content">
+                <h3>E-commerce Platform</h3>
+                <p>Full-stack solution for a growing retail business.</p>
+              </div>
+              <div class="hover-details">
+                <p>Built with React, Node.js, and MongoDB. Includes user auth, payments, and order tracking.</p>
+              </div>
+            </div>
+      
+            <div class="portfolio-item">
+              <div class="portfolio-image">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="AI Chatbot">
+              </div>
+              <div class="portfolio-content">
+                <h3>AI Chatbot</h3>
+                <p>Intelligent customer support system.</p>
+              </div>
+              <div class="hover-details">
+                <p>Powered by Dialogflow, deployed on cloud, available on WhatsApp & website 24/7.</p>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+      
+
+      <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+
+        <div class="container contact-container">
+          <div class="contact-left">
+            <p class="contact-subtext">Let’s discuss how we can help your business grow</p>
+            <div class="contact-info">
+              <p><strong>Email:</strong> contact@corelynx.in</p>
+              <p><strong>Address:</strong><br>188, 5th floor,<br>Patparganj Industrial Area,<br>New Delhi-110092, Delhi, India</p>
+            </div>
+          </div>
+          <div class="contact-right">
+            <form id="contact-form" action="https://formspree.io/f/xanjjjvn" method="POST">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="name" required>
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" required>
+              </div>
+              <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" required></textarea>
+              </div>
+              <button type="submit" class="submit-button">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      
+      
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Corelynx Technologies</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="copyright">&copy; 2025 Corelynx Technologies. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

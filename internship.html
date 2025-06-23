@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Corelynx Technologies Summer Internship Program - Join our innovative internship program for students passionate about technology">
+    <title>Summer Internship Program - Corelynx Technologies</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        
+/* Section Titles */
+.section-title,
+.contact h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* ELIGIBILITY SECTION */
+.eligibility-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.criteria-card {
+  flex: 1 1 250px;
+  padding-left: 40px;
+  position: relative;
+}
+
+.criteria-card .number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0a1f44;
+}
+
+.criteria-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.criteria-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* APPLICATION PROCESS SECTION */
+.application-steps {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 20px;
+  counter-reset: step-counter;
+  position: relative;
+}
+
+.step {
+  flex: 1 1 200px;
+  text-align: center;
+  padding-top: 20px;
+  max-width: 220px;
+  position: relative;
+}
+
+.step::before {
+  counter-increment: step-counter;
+  content: counter(step-counter);
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 15px;
+  background-color: #0a1f44;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  line-height: 40px;
+}
+
+.step h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Optional connector line for large screens */
+@media (min-width: 768px) {
+  .application-steps::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    right: 50px;
+    height: 2px;
+    background: #ccc;
+    z-index: -1;
+  }
+}
+
+
+        /* Global Variables */
+        :root {
+            --primary-color: #0a66c2;
+            --secondary-color: #f6fff6;
+            --text-color: #223344;
+            --transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f6fff6 0%, #ffffff 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(10,102,194,0.1)" fill-opacity="1" d="M0,64L48,85.3C96,107,192,149,288,165.3C384,181,480,171,576,144C672,117,768,75,864,74.7C960,75,1056,117,1152,138.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat center bottom;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        #internship {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f6fff6 100%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Benefits Section */
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Animation */
+        .stat-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .stat-item.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Form Styling */
+        .internship-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            background-color: var(--secondary-color);
+        }
+
+        .form-container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .form-group:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .file-upload {
+            position: relative;
+            padding: 1rem;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: rgba(10, 102, 194, 0.05);
+        }
+
+        .file-text {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-color), #004b9a);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(10, 102, 194, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="index.html">Corelynx Technologies</a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">About</a></li>
+                <li><a href="index.html">Services</a></li>
+                <li><a href="internship.html">Internship</a></li>
+                <li><a href="index.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <br><br><br><br>
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <div class="hero-text">
+                    <h1 class="fade-in">Summer Internship Program</h1>
+                    <p class="fade-in" style="--delay: 0.2s">Join the Next Generation of Tech Leaders</p>
+                    <div class="stats fade-in" style="--delay: 0.4s">
+                        <div class="stat-item">
+                            <span class="number">12</span>
+                            <span class="label">Week Program</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">5+</span>
+                            <span class="label">Past Interns</span>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="hero-image fade-in" style="--delay: 0.8s">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Students working in tech environment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="internship" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h2>Program Overview</h2>
+                        <p class="lead">Join Corelynx's elite Summer Internship Program - an immersive 12-week journey into the world of cutting-edge technology and innovation.</p>
+                        <p>Our program is designed for ambitious students who are passionate about technology and eager to make a real impact. During your internship, you'll:</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check-circle"></i> Work on real-world projects with our expert development team</li>
+                            <li><i class="fas fa-check-circle"></i> Receive personalized mentorship from industry leaders</li>
+                            <li><i class="fas fa-check-circle"></i> Build a professional portfolio of work</li>
+                            <li><i class="fas fa-check-circle"></i> Network with tech professionals and potential employers</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Students working in tech environment">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Key Benefits</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Real-World Experience</h3>
+                    <p>Work on actual client projects and contribute to meaningful solutions</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Mentorship</h3>
+                    <p>Learn from industry veterans with years of experience</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Professional Growth</h3>
+                    <p>Receive official certification and build your resume</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Industry Network</h3>
+                    <p>Connect with tech professionals and potential employers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Eligibility Criteria</h2>
+            <div class="eligibility-grid">
+                <div class="criteria-card">
+                    <div class="number">1</div>
+                    <h3>Education</h3>
+                    <p>Currently enrolled in a Bachelor's or Master's program in Computer Science, Engineering, or related fields</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="number">2</div>
+                    <h3>Technical Skills</h3>
+                    <p>Strong programming skills in at least one programming language</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="number">3</div>
+                    <h3>Passion</h3>
+                    <p>Demonstrated passion for technology and innovation</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="number">4</div>
+                    <h3>Problem Solving</h3>
+                    <p>Excellent problem-solving abilities and analytical thinking</p>
+                </div>
+                <div class="criteria-card">
+                    <div class="number">5</div>
+                    <h3>Communication</h3>
+                    <p>Strong communication and teamwork skills</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2>Application Process</h2>
+            <div class="application-steps">
+                <div class="step">
+                    <span class="step-number">1</span>
+                        <h3>Submit Application</h3>
+                        <p>Complete our online application form</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <h3>Technical Assessment</h3>
+                        <p>Complete coding challenges</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <h3>Interview</h3>
+                        <p>Technical and behavioral interview</p>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">4</span>
+                        <h3>Offer</h3>
+                        <p>Receive internship offer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="internship-section">
+                <br><br><br>
+
+                <h2>Apply for Internship</h2>
+                <div class="internship-form">
+                    <form id="internshipForm" action="https://your-form-handler-url" method="POST" enctype="multipart/form-data" class="fade-in">
+                        <div class="form-container">
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" required placeholder="Your Full Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required placeholder="Your Email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="Your Phone Number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="university">University</label>
+                                    <input type="text" id="university" name="university" required placeholder="Your University">
+                                </div>
+                                <div class="form-group">
+                                    <label for="major">Major</label>
+                                    <input type="text" id="major" name="major" required placeholder="Your Major">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="resume">Upload Resume</label>
+                                    <div class="file-upload">
+                                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                        <span class="file-text">PDF, DOC, or DOCX files only</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="github">GitHub Profile (Optional)</label>
+                                    <input type="url" id="github" name="github" placeholder="Your GitHub Profile URL">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="cta-button primary">Submit Application</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+                        
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Corelynx Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
